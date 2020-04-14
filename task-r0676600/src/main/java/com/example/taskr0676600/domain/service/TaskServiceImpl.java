@@ -1,8 +1,8 @@
-package com.example.tasks.service;
+package com.example.taskr0676600.domain.service;
 
-import com.example.tasks.domain.Task;
-import com.example.tasks.dto.TaskDTO;
-import com.example.tasks.repository.TaskRepository;
+import com.example.taskr0676600.domain.model.Task;
+import com.example.taskr0676600.dto.TaskDTO;
+import com.example.taskr0676600.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,10 @@ import java.util.List;
 @Service
 public class TaskServiceImpl implements TaskService{
     private final TaskRepository repository;
+
     @Autowired
-    public TaskServiceImpl(TaskRepository repository){
-        this.repository=repository;
+    public TaskServiceImpl(TaskRepository repository) {
+        this.repository = repository;
     }
 
     @Override

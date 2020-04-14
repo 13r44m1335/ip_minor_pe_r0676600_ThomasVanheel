@@ -1,8 +1,8 @@
-package com.example.tasks.controller;
+package com.example.taskr0676600.controller;
 
 
-import com.example.tasks.dto.TaskDTO;
-import com.example.tasks.service.TaskService;
+import com.example.taskr0676600.dto.TaskDTO;
+import com.example.taskr0676600.domain.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

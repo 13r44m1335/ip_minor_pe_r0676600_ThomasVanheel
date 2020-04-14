@@ -1,6 +1,7 @@
-package com.example.tasks.repository;
+package com.example.taskr0676600.repository;
 
-import com.example.tasks.domain.Task;
+import com.example.taskr0676600.domain.model.Task;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class TaskRepository {
     private List<Task> list;
+
 
     public TaskRepository() {
         list = new ArrayList<>();

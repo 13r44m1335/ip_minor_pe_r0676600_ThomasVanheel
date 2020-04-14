@@ -1,12 +1,14 @@
 package com.example.taskr0676600.repository;
 
 import com.example.taskr0676600.domain.model.Task;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Repository
 public class TaskRepository {
     private List<Task> list;
 

@@ -7,17 +7,19 @@
 <body>
 <h4>Tasks</h4>
 <table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Due date</th>
-    </tr>
-    </thead>
+
     <tbody>
+    <div th:if="${tasks.isEmpty()}">
+        <tr>
+            <td>No tasks left to do</td>
+        </tr>
+    </div>
 
     <tr th:each="task : ${tasks}">
-        <td th:text="*{task.title}"></td>
-        <td th:text="*{task.dueDate}"></td>
+
+        <td th:text="${task.title} + ' due ' + ${task.dueDate}">1</td>
+        <td><a th:href="'/tasks/'+${task.id}">Detail</a></td>
+
     </tr>
     </tbody>
 </table>

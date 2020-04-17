@@ -7,6 +7,20 @@
     <p th:insert="nav"/>
 </head>
 <body>
+<h1>Edit Task</h1>
+<form method="post" th:action="'/tasks/edit/'+${task.id}">
 
+    <label for="title">Title: </label>
+    <input type="text" name="title" id="title" th:value="${task.title}">
+    <br>
+    <label for="detail">Description: </label>
+    <input type="text" name="detail" id="detail" th:value="${task.detail}">
+    <br>
+    <label for="dueDate">Due date: </label>
+    <input type="datetime-local" name="dueDate" id="dueDate" th:value="${task.dueDate}">
+    <br>
+    <input type="submit" value="Edit">
+
+</form>
 </body>
 </html>

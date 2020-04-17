@@ -8,12 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.jws.WebParam;
 import javax.validation.Valid;
 
 @Controller
-//@RequestMapping("/tasks")
 public class TaskController {
     private final TaskService taskService;
 
@@ -38,7 +35,7 @@ public class TaskController {
     @GetMapping("/tasks/{id}")
     public String getTask(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("task", taskService.getTask(id));
-        //model.addAttribute("subTasks",taskService.getSubtasks(id));
+        //model.addAttribute("subtasks",taskService.getSubtasks(id));
         return "taskDetail";
     }
 
@@ -60,12 +57,22 @@ public class TaskController {
     }
 
 
-
-
-
-    @PostMapping
-    public String addTask(@ModelAttribute TaskDTO taskDTO){
-        taskService.addTask(taskDTO);
-        return "redirect:/tasks";
+    @GetMapping("/tasks/edit/{id}")
+    public String goEditTask(Model model, @PathVariable("id") Integer id){
+        model.addAttribute("task", taskService.getTask(id));
+        //model.addAttribute("subtasks",taskService.getSubTask(id));
+        return "editTask";
     }
+
+    @PostMapping("/tasks/edit/{id}")
+    public String editTask(@Valid TaskDTO taskDTO,@PathVariable("id") Integer id ,BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            taskService.editTask(id, taskDTO);
+            return "redirect:/tasks/{id}";
+        } else {
+            return "/tasks/edit/{id}";
+        }
+    }
+
+
 }

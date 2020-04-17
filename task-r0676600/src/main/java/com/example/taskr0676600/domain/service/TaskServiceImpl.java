@@ -50,6 +50,7 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public void editTask(int id, TaskDTO t) {
+        repository.editTask(new Task(id,t.getTitle(),t.getDueDate(),t.getDetail()));
 
     }
 

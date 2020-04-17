@@ -41,6 +41,6 @@ public class TaskRepository {
 
 
     public void addTask(Task task) {
-        list.add(task);
+        this.list.add(task);
     }
 }

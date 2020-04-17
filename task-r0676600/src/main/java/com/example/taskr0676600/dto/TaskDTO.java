@@ -3,6 +3,7 @@ package com.example.taskr0676600.dto;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class TaskDTO {
     private int id;
@@ -20,7 +21,6 @@ public class TaskDTO {
         return title;
     }
 
-    @NotNull
     public void setTitle(String title) {
         this.title = title;
     }
@@ -35,7 +35,10 @@ public class TaskDTO {
 
 
 
-    public void setDueDate(LocalDateTime dueDate) {
+    public void setDueDate(String dateString) {
+        dateString = dateString.replace('T',' ');
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dueDate = LocalDateTime.parse(dateString, formatter);
         this.dueDate = dueDate;
     }
 

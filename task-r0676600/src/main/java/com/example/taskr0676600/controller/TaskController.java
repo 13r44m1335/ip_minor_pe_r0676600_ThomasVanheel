@@ -6,9 +6,11 @@ import com.example.taskr0676600.domain.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.jws.WebParam;
+import javax.validation.Valid;
 
 @Controller
 //@RequestMapping("/tasks")
@@ -42,6 +44,20 @@ public class TaskController {
 
 
 
+    @GetMapping("/tasks/new")
+    public String createTask(){
+        return "createTask";
+    }
+
+    @PostMapping("/tasks/createTask")
+    public String newTask(@Valid TaskDTO taskDTO, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            taskService.addTask(taskDTO);
+            return "redirect:/tasks";
+        } else {
+            return "/tasks/new";
+        }
+    }
 
 
 

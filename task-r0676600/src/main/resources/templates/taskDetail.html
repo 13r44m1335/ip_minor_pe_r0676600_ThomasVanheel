@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="static/style.css">
 <head>
     <meta charset="UTF-8">
-    <title>Task detail</title>
+    <title>Taskmanager - Task detail</title>
+    <p th:insert="nav"/>
 </head>
 <body>
-<p>Navigation</p>
-<a href="/tasks">Task overview</a>
-<br>
+
 <h1>Task detail</h1>
 <div th:if="${task==null}">
     <p>Task not found</p>

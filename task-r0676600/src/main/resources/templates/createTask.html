@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/style.css">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create task</title>
+    <p th:insert="nav"/>
 </head>
 <body>
-
+<h1>Create Task</h1>
+<form method="post" action="/tasks/createTask">
+    <p>New Task</p>
+    <label for="title">Title: </label>
+    <input type="text" name="title" id="title" ><br>
+    <label for="description">Description: </label>
+    <input type="text" name="description" id="description"><br>
+    <label for="dueDate">Due date: </label>
+    <input type="datetime-local" name="dueDate" id="dueDate" placeholder="2020-06-12T19:30"><br>
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>

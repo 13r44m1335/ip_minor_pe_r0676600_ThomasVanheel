@@ -77,8 +77,14 @@ public class TaskRepository {
     }
 
     public void editSubtask(int id, Subtask subtask){
-        this.getTask(id).editSubtask(subtask);
-        /*Task x = this.getTask(id);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == id) {
+                list.get(i).editSubtask(subtask);
+                return;
+            }
+        }
+        /*this.getTask(id).editSubtask(subtask);
+        Task x = this.getTask(id);
             for (Subtask s:x.getSubtasks()
                  ) {if(s.getId()==subtask.getId()){
                      s.setTitle(subtask.getTitle());
@@ -91,11 +97,14 @@ public class TaskRepository {
 
 
     public void removeSubtask(int id, int subtaskId){
-        for (Task x:list
-        ) {if(x.getId()==id){
-            x.removeSubTask(subtaskId);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == id) {
+                list.get(i).removeSubtask(subtaskId);
+                return;
             }
         }
+
+
     }
 
 

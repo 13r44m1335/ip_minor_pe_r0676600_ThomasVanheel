@@ -97,19 +97,25 @@ public class Task {
     }
 
     public void editSubtask(Subtask subtask) {
-        for (Subtask s:subtasks
-             ) {if (s.getId() == subtask.getId()) {
-            s.setDescription(subtask.getDescription());
-            s.setTitle(subtask.getTitle());}
 
+        for (int i = 0; i < subtasks.size(); i++) {
+            if (subtasks.get(i).getId() == id) {
+                subtasks.get(i).setDescription(subtask.getDescription());
+                subtasks.get(i).setTitle(subtask.getTitle());
+
+            }
         }
 
     }
 
-    public void removeSubTask(int id) {
-        for (Subtask s:subtasks
-             ) {if(s.getId() == id){
-                 subtasks.remove(s);
+    public void removeSubtask(int id) {
+        for (int i = 0; i < subtasks.size(); i++) {
+            if (subtasks.get(i).getId() == id) {
+                subtasks.remove(i);
+                while (i < subtasks.size()) {
+                    subtasks.get(i).setId(subtasks.get(i).getId() - 1);
+                    i++;
+                }
             }
         }
     }

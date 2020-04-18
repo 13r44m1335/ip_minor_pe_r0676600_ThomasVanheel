@@ -90,7 +90,7 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/{id}/sub/{subId}/remove")
-    public String removeSubTask(@PathVariable("id") Integer id, @PathVariable("subId") Integer subId, Model model) {
+    public String removeSubTask(@PathVariable("id") Integer id, @PathVariable("subId") Integer subId) {
         taskService.removeSubTask(id, subId);
         return "redirect:/tasks/{id}";
     }

@@ -19,11 +19,11 @@ public interface TaskService {
     void editTask(int id, TaskDTO t);
 
 
-    Subtask getSubTask(int subId);
+    Subtask getSubTask(int id, int subId);
 
     void addSubTask(int id, SubtaskDTO subTask);
 
-    void editSubTask(int id, int subId, SubtaskDTO subTask);
+    void editSubTask(int id, SubtaskDTO subTask);
 
     void removeSubTask(int id, int subId);
 

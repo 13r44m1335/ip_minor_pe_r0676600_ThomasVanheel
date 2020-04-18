@@ -45,6 +45,7 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public void removeTask(int id) {
+        repository.removeTask(id);
 
     }
 
@@ -55,27 +56,30 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public Subtask getSubTask(int subId) {
-        return null;
+    public Subtask getSubTask(int id, int subId) {
+        return repository.getTask(id).getSubtask(subId);
     }
 
     @Override
-    public void addSubTask(int id, SubtaskDTO subTask) {
+    public void addSubTask(int id, SubtaskDTO subtask) {
+        repository.addSubtask(id,new Subtask(subtask.getId(),subtask.getTitle(),subtask.getDescription()));
 
     }
 
     @Override
-    public void editSubTask(int id, int subId, SubtaskDTO subTask) {
+    public void editSubTask(int id, SubtaskDTO subTask) {
+        repository.editSubtask(id,new Subtask(subTask.getId(),subTask.getTitle(),subTask.getDescription()));
 
     }
 
     @Override
     public void removeSubTask(int id, int subId) {
+        repository.removeSubtask(id,subId);
 
     }
 
     @Override
     public List<Subtask> getSubtasks(int taskId) {
-        return null;
+        return repository.getTask(taskId).getSubtasks();
     }
 }

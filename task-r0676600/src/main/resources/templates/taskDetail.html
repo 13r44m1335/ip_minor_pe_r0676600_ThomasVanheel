@@ -16,8 +16,12 @@
     <p th:text="'Title: ' +${task.title}"></p>
     <p th:text="'Description: '+${task.detail}"></p>
     <p th:text="'Due date: ' +${task.dueDate}"></p>
+
     <h2>SubTasks</h2>
-    <!--<div th:if="${subTasks.size()!=0}">
+    <div th:if="${subtasks.size()==0}">
+        <p>No subtasks</p>
+    </div>
+    <div th:if="${subtasks.size()!=0}">
         <table>
             <thead>
             <tr>
@@ -28,15 +32,24 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="subtask : ${subTasks}">
-                <td th:text="${subtask.title}">1</td>
-                <td th:text="${subtask.description}">1</td>
-                <td><a th:href="'/tasks/'+${curtask.id}+'/sub/'+${subtask.id}+'/edit'">edit</a></td>
-                <td><a th:href="'/tasks/'+${curtask.id}+'/sub/'+${subtask.id}+'/remove'">X</a></td>
+            <tr th:each="subtask : ${subtasks}">
+                <td th:text="${subtask.title}"></td>
+                <td th:text="${subtask.description}"></td>
+                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'">edit</a></td>
+                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/remove'">remove</a></td>
             </tr>
             </tbody>
         </table>
-    </div>-->
+    </div>
+
+    <form method="post" th:action="'/tasks/'+${task.id}+'/sub/create'">
+        <h3>Add subtask</h3>
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" ><br>
+        <label for="description">Description: </label>
+        <input type="text" name="description" id="description"><br>
+        <input type="submit" value="Submit">
+    </form>
 </div>
 </body>
 </html>

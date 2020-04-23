@@ -17,7 +17,6 @@
     </div>
 
     <tr th:each="task : ${tasks}">
-        <img th:src="@{/images/test.png}"/>
 
         <td th:text="${task.title} + ' due ' + ${task.dueDateString}"/>
         <td><a th:href="'/tasks/'+${task.id}">Detail</a></td>

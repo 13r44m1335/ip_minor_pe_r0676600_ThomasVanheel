@@ -24,6 +24,11 @@ public class Subtask {
         this.description = description;*/
     }
 
+    public Subtask(@NotEmpty String title, @NotEmpty String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     /*public Subtask(String title, String description) {
         this.title = title;
         this.description = description;

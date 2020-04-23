@@ -39,6 +39,14 @@ public class Task {
 
     }
 
+    public Task(@NotEmpty String title, @NotEmpty String description, LocalDateTime dueDate) {
+        setDescription(description);
+        setTitle(title);
+        setDueDate(dueDate);
+        this.subtasks = new ArrayList<>();
+    }
+
+
     public int getId(){return id;}
 
     public void setId(int id){this.id = id;}

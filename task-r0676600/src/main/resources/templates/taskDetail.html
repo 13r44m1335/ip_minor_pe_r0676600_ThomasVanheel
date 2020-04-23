@@ -33,8 +33,6 @@
             </thead>
             <tbody>
             <tr th:each="subtask : ${subtasks}">
-                <td th:text="${subtask.getId()}"/>
-                <td th:text="${subtask.id}"/>
                 <td th:text="${subtask.title}"></td>
                 <td th:text="${subtask.description}"></td>
                 <!--<td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'">edit</a></td>-->

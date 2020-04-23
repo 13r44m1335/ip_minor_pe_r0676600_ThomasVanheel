@@ -17,11 +17,15 @@
     </div>
 
     <tr th:each="task : ${tasks}">
+        <img th:src="@{/images/test.png}"/>
 
-        <td th:text="${task.title} + ' due ' + ${task.dueDate}">1</td>
+        <td th:text="${task.title} + ' due ' + ${task.dueDateString}"/>
         <td><a th:href="'/tasks/'+${task.id}">Detail</a></td>
+
         <td><a th:href="'/tasks/edit/'+${task.id}">Edit task</a></td>
+
         <td><a th:href="'/tasks/'+${task.id}+'/remove'">Remove task</a></td>
+
 
 
     </tr>

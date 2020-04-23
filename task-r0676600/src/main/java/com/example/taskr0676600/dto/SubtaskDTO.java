@@ -3,22 +3,22 @@ package com.example.taskr0676600.dto;
 import javax.validation.constraints.NotNull;
 
 public class SubtaskDTO {
-    private int id;
-    @NotNull
-    private String title;
 
-    @NotNull
+    private int subtaskid;
+
+    private String title;
     private String description;
 
 
     public int getId() {
-        return id;
+        return subtaskid;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.subtaskid = id;
     }
 
+    @NotNull
     public String getTitle() {
         return title;
     }
@@ -27,6 +27,7 @@ public class SubtaskDTO {
         this.title = title;
     }
 
+    @NotNull
     public String getDescription() {
         return description;
     }

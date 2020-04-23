@@ -8,9 +8,12 @@ import com.example.taskr0676600.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Service
+@Service("TaskServiceImpl")
 public class TaskServiceImpl implements TaskService{
     private final TaskRepository repository;
 
@@ -18,6 +21,134 @@ public class TaskServiceImpl implements TaskService{
     public TaskServiceImpl(TaskRepository repository) {
 
         this.repository = repository;
+    }
+
+
+    @Override
+    public List<TaskDTO> getTasks() {
+        return repository.findAll().stream().map(h->{
+            TaskDTO dto = new TaskDTO();
+            dto.setDescription(h.getDescription());
+            dto.setDueDate(h.getDueDate());
+            dto.setTitle(h.getTitle());
+            dto.setId(h.getId());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public void addTask(TaskDTO taskDTO) {
+        Task task = new Task();
+        task.setTitle(taskDTO.getTitle());
+        task.setDescription(taskDTO.getDescription());
+        task.setDueDate(taskDTO.getDueDate());
+        repository.save(task);
+    }
+
+    @Override
+    public TaskDTO getTask(int id) {
+        Task task =  repository.getTaskById(id);
+        TaskDTO dto = new TaskDTO();
+        dto.setId(task.getId());
+        dto.setTitle(task.getTitle());
+        dto.setDescription(task.getDescription());
+        dto.setDueDate(task.getDueDate());
+
+        dto.setSubtasks(task.getSubtasks()
+                .stream().map(s -> {
+                    SubtaskDTO subtaskDTO = new SubtaskDTO();
+                    subtaskDTO.setId(s.getId());
+                    subtaskDTO.setTitle(s.getTitle());
+                    subtaskDTO.setDescription(s.getDescription());
+
+                    return subtaskDTO;
+                }).collect(Collectors.toList())
+        );
+
+        return dto;
+    }
+
+    @Override
+    public Task getTaskById(int id) {
+        return repository.getTaskById(id);
+    }
+
+    @Override
+    @Transactional
+    public void removeTask(int id) {
+        Task task = new Task();
+        task.setId(getTask(id).getId());
+        task.setDueDate(getTask(id).getDueDate());
+        task.setDescription(getTask(id).getDescription());
+        task.setTitle(getTask(id).getTitle());
+        repository.delete(task);
+
+    }
+
+    @Override
+    @Transactional
+    public void editTask(int id, TaskDTO t) {
+        Task task = new Task();
+        task.setId(t.getId());
+        task.setTitle(t.getTitle());
+        task.setDescription(t.getDescription());
+        task.setDueDate(t.getDueDate());
+
+        task.setSubtasks(t.getSubtasks()
+                .stream().map(s -> {
+                    Subtask subtask = new Subtask();
+                    subtask.setId(s.getId());
+                    subtask.setTitle(s.getTitle());
+                    subtask.setDescription(s.getDescription());
+
+                    return subtask;
+                }).collect(Collectors.toList())
+        );
+        repository.save(task);
+    }
+
+    @Override
+    public Subtask getSubtask(int id, int subId) {
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public void addSubtask(int id, SubtaskDTO subtaskDTO) {
+        Subtask subtask = new Subtask();
+        subtask.setTitle(subtaskDTO.getTitle());
+        subtask.setDescription(subtaskDTO.getDescription());
+
+        Task task = getTaskById(id);
+
+        task.addSubtask(subtask);
+
+        repository.save(task);
+    }
+
+    @Override
+    public void editSubtask(int id, int subtaskid,SubtaskDTO subTask) {
+        Task task = repository.getTaskById(id);
+        Subtask subTask1 = task.getSubtask(subtaskid);
+        subTask1.setTitle(subTask.getTitle());
+        subTask1.setDescription(subTask.getDescription());
+        task.editSubtask(subTask1);
+        repository.save(task);
+
+
+
+    }
+
+    @Override
+    public void removeSubtask(int id, int subId) {
+        Task task = repository.getTaskById(id);
+        task.removeSubtask(subId);
+        repository.save(task);
+    }
+
+    /*@Override
+    public List<Subtask> getSubtasks(int taskId) {
+        return null;
     }
 
     @Override
@@ -55,6 +186,7 @@ public class TaskServiceImpl implements TaskService{
 
     }
 
+
     @Override
     public Subtask getSubTask(int id, int subId) {
         return repository.getTask(id).getSubtask(subId);
@@ -67,8 +199,8 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public void editSubTask(int id, SubtaskDTO subTask) {
-        repository.editSubtask(id,new Subtask(subTask.getId(),subTask.getTitle(),subTask.getDescription()));
+    public void editSubTask(int id, SubtaskDTO subtask) {
+        repository.editSubtask(id,new Subtask(subtask.getId(),subtask.getTitle(),subtask.getDescription()));
 
     }
 
@@ -81,5 +213,5 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public List<Subtask> getSubtasks(int taskId) {
         return repository.getTask(taskId).getSubtasks();
-    }
+    }*/
 }

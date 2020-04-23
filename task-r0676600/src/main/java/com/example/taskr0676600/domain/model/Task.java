@@ -1,5 +1,9 @@
 package com.example.taskr0676600.domain.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -7,19 +11,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity(name = "task")
 public class Task {
-    private int id;
-    private String title;
+
+
+    @NotEmpty
+    private String description,title;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dueDate;
-    private String detail;
+
+    @Id
+    @GeneratedValue
+    private int id;
+    private String dueDateString;
+
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Subtask> subtasks;
 
 
-    public Task(int id, String title, LocalDateTime dueDate, String detail) {
-        this.id = id;
+    public Task(/*int id, String title, LocalDateTime dueDate, String description*/) {
+        /*this.id = id;
         this.title = title;
         this.dueDate = dueDate;
-        this.detail = detail;
+        this.description = description;*/
         this.subtasks = new ArrayList<>();
 
     }
@@ -40,17 +55,25 @@ public class Task {
         return dueDate;
     }
 
-    public void setDueDate(LocalDateTime dueDate) {
-        this.dueDate = dueDate;
+    public void setDueDateString(LocalDateTime localDateTime){
+        this.dueDateString = DateTimeFormatter.ISO_DATE.format(localDateTime) + " at " + DateTimeFormatter.ISO_TIME.format(localDateTime);
+    }
+    public String getDueDateString(){
+        return dueDateString;
     }
 
-    public String getDetail(){return detail;}
+    public void setDueDate(LocalDateTime dueDate) {
+        this.dueDate = dueDate;
+       setDueDateString(dueDate);
+    }
 
-    public void setDetail(String detail){ this.detail = detail;}
+    public String getDescription(){return description;}
+
+    public void setDescription(String description){ this.description = description;}
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTitle(), getDetail(), getDueDate());
+        return Objects.hash(getTitle(), getDescription(), getDueDate());
     }
 
     @Override
@@ -68,43 +91,41 @@ public class Task {
 
     public Subtask getSubtask(int id)
     {
+        Subtask out = null;
         for (Subtask s:subtasks) {
             if(s.getId()==id)
             {
-                return s;
+                out= s;
             }
         }
-        return null;
+        return out;
     }
 
     public void addSubtask(Subtask subtask) {
-        int x = -1;
+       /*int x = 0;
         for (Subtask s:subtasks
              ) {if(x<s.getId()){
                  x = s.getId();
         }
 
         }
-        if(subtasks.size()!=0)
-        {
-            subtask.setId(subtasks.get(subtasks.size() - 1).getId() + 1);
-        }
-        else
-        {
-            subtask.setId(x+1);
-        }
+        subtask.setId(x+1);*/
+
         subtasks.add(subtask);
     }
 
     public void editSubtask(Subtask subtask) {
+        this.getSubtask(subtask.getId()).setDescription(subtask.getDescription());
+        this.getSubtask(subtask.getId()).setTitle(subtask.getTitle());
 
+        /*
         for (int i = 0; i < subtasks.size(); i++) {
             if (subtasks.get(i).getId() == id) {
                 subtasks.get(i).setDescription(subtask.getDescription());
                 subtasks.get(i).setTitle(subtask.getTitle());
 
             }
-        }
+        }*/
 
     }
 
@@ -112,10 +133,7 @@ public class Task {
         for (int i = 0; i < subtasks.size(); i++) {
             if (subtasks.get(i).getId() == id) {
                 subtasks.remove(i);
-                while (i < subtasks.size()) {
-                    subtasks.get(i).setId(subtasks.get(i).getId() - 1);
-                    i++;
-                }
+
             }
         }
     }

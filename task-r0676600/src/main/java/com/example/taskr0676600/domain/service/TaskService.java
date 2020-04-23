@@ -8,27 +8,27 @@ import com.example.taskr0676600.dto.TaskDTO;
 import java.util.List;
 
 public interface TaskService {
-    List<Task> getTasks();
+    List<TaskDTO> getTasks();
 
     void addTask(TaskDTO taskDTO);
 
-    Task getTask(int id);
+    TaskDTO getTask(int id);
+
+    Task getTaskById(int id);
 
     void removeTask(int id);
 
     void editTask(int id, TaskDTO t);
 
 
-    Subtask getSubTask(int id, int subId);
+    Subtask getSubtask(int id, int subId);
 
-    void addSubTask(int id, SubtaskDTO subTask);
+    void addSubtask(int id, SubtaskDTO subTask);
 
-    void editSubTask(int id, SubtaskDTO subTask);
+    void editSubtask(int id, int subtaskid ,SubtaskDTO subTask);
 
-    void removeSubTask(int id, int subId);
+    void removeSubtask(int id, int subId);
 
-
-    List<Subtask> getSubtasks(int taskId);
 
 
 

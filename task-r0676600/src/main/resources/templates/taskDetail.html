@@ -14,8 +14,8 @@
 <div th:if="${task!=null}">
 
     <p th:text="'Title: ' +${task.title}"></p>
-    <p th:text="'Description: '+${task.detail}"></p>
-    <p th:text="'Due date: ' +${task.dueDate}"></p>
+    <p th:text="'Description: '+${task.description}"></p>
+    <p th:text="'Due date: ' +${task.dueDateString}"></p>
 
     <h2>SubTasks</h2>
     <div th:if="${subtasks.size()==0}">
@@ -33,10 +33,12 @@
             </thead>
             <tbody>
             <tr th:each="subtask : ${subtasks}">
+                <td th:text="${subtask.getId()}"/>
+                <td th:text="${subtask.id}"/>
                 <td th:text="${subtask.title}"></td>
                 <td th:text="${subtask.description}"></td>
-                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'">edit</a></td>
-                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/remove'">remove</a></td>
+                <!--<td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'">edit</a></td>-->
+                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.getId()}+'/remove'">remove</a></td>
             </tr>
             </tbody>
         </table>

@@ -1,28 +1,40 @@
 package com.example.taskr0676600.domain.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+@Entity(name = "subtask")
 public class Subtask {
-    private int id;
-    private String title;
-    private String description;
+    @Id
+    @GeneratedValue
+    private int subtaskid;
 
-    public Subtask(int id, String title, String description) {
-        this.id = id;
+    private int taskid;
+    @NotEmpty
+    private String title,description;
+
+
+    public Subtask(/*int id, String title, String description*/) {
+        /*this.id = id;
         this.title = title;
-        this.description = description;
+        this.description = description;*/
     }
 
-    public Subtask(String title, String description) {
+    /*public Subtask(String title, String description) {
         this.title = title;
         this.description = description;
-    }
+    }*/
 
     public int getId() {
-        return id;
+        return subtaskid;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.subtaskid = id;
     }
 
     public String getTitle() {

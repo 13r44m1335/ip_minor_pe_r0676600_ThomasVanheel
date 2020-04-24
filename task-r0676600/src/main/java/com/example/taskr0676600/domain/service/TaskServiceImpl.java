@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -88,28 +87,19 @@ public class TaskServiceImpl implements TaskService{
     @Override
     @Transactional
     public void editTask(int id, TaskDTO t) {
+        List<Subtask> subtasks = getTaskById(id).getSubtasks();
         Task task = new Task();
         task.setId(t.getId());
         task.setTitle(t.getTitle());
         task.setDescription(t.getDescription());
         task.setDueDate(t.getDueDate());
-
-        task.setSubtasks(t.getSubtasks()
-                .stream().map(s -> {
-                    Subtask subtask = new Subtask();
-                    subtask.setId(s.getId());
-                    subtask.setTitle(s.getTitle());
-                    subtask.setDescription(s.getDescription());
-
-                    return subtask;
-                }).collect(Collectors.toList())
-        );
+        task.setSubtasks(subtasks);
         repository.save(task);
     }
 
     @Override
     public Subtask getSubtask(int id, int subId) {
-        return null;
+        return getTaskById(id).getSubtask(subId);
     }
 
     @Override
@@ -127,7 +117,7 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public void editSubtask(int id, int subtaskid,SubtaskDTO subTask) {
+    public void editSubtask(int id, int subtaskid, SubtaskDTO subTask) {
         Task task = repository.getTaskById(id);
         Subtask subTask1 = task.getSubtask(subtaskid);
         subTask1.setTitle(subTask.getTitle());

@@ -1,134 +1,32 @@
-@charset "UTF-8";
-/* http://meyerweb.com/eric/tools/css/reset/
-  v2.0 | 20110126
-  License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
-body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-/*Padding hoort bij het element, margin is de ruimte erbuiten*/
-/*Voor vette tekst*/
-b
-{
-    font-weight: bold;
-}
-
-/*Geeft de tekst over een totale vaste breedte weer
-padding is de contouren rond een geheel*/
-main
-{
-    text-align: justify;
-    padding: 15px;
-}
-
-/*Geeft img aan rechterkant weer (vb de brocoli op de index pagina en de vlinder op de voedingsadviezen pagina*/
-main img
-{
-    position:relative;
-    float:right;
-    padding: 0 0 20px 20px ;
-    box-sizing: border-box;
-}
-
-
 p {
-	margin: 10px 0;
-    
+    margin: 10px 0;
+
 }
 
-/*form*/ 
-label 
-{     
-    line-height: 1.6; 
-}  
+/*form*/
+label
+{
+    line-height: 1.6;
+}
 /*invulvakken naam ev.*/
-input 
-{     
-    min-width: 250px;     
-    min-height: 30px;     
-    margin: 10px 0; 
-}  
-
-/*Radio buttons*/
-input[type="radio"]
-{     
-    min-width: 20px;     
-    min-height: 20px;     
-    margin: 10px 10px 0 10px; 
-} 
-
-/*Invulvak commentaar*/
-textarea
-{    
-    min-width: 250px;    
-    min-height: 100px;    
+input
+{
+    min-width: 250px;
+    min-height: 30px;
     margin: 10px 0;
 }
 
-/*Zorgt voor het navigatie gedeelte op klein scherm*/
-nav li a 
-{
-    list-style-type: none;
-    text-decoration: none;
-    text-decoration-color: #ffffff;
-    box-sizing: border-box;
-    margin:5px;
-    display:block;
-    padding: 5px 0;
-    
-}
 
-/*Breedte van de naviagtie en tekst structuur*/
-nav li, nav h1
+/*Invulvak commentaar*/
+textarea
 {
-    padding: 0 10px;
-    width:100%;
-    text-align: -moz-left;
+    min-width: 250px;
+    min-height: 100px;
+    margin: 10px 0;
 }
 
 /*Hoveren (overgaan van muis)*/
-nav a:hover, nav a:focus 
+nav a:hover, nav a:focus
 {
     text-decoration:underline;
     color: #ffffff;
@@ -142,145 +40,106 @@ li
 }
 
 /*Lettertype*/
-html 
+html
 {
-	font-family: "Gill Sans", verdana, sans-serif;
+    font-family: "Gill Sans", verdana, sans-serif;
 }
 
-/**/
-h1, h2 
-{
-	font-size: 150%;
-	line-height: 1.8;
-	text-align:center;     
-}
-td
-{
-    text-underline: #484d72;
-}
-
-/*kleur van de navigatie (balk)*/
- header nav 
-{
-    background-color: #484d72;
-    
-}
 
 /*Kleur van de vakjes van de navigatie en de tekst kleur*/
-header nav a, nav li a
+header nav a
 {
-    background-color: #484d72;
-	color: #FFF;
+    background-color: burlywood;
+    color: #FFF;
 }
 
 /*Kleur van footer + contouren*/
-footer 
+footer
 {
-	background-color: #484d72;
+    background-color: burlywood;
     padding: 30px 100px;
-    
+
 }
 
-/*Achtergrond afbeelding, kleur en grootte van de header*/
-header
-{    
-    background-size: cover;
-    background-color: white;
-    position:relative;
+
+nav{
+    background-color: burlywood;
+    border: 2px solid black;
+}
+nav h1{
+    padding: 10px;
+    display: inline-block;
+    border-right: 2px solid black;
+
+}
+nav li{
+    padding: 0px 5px;
+    display: inline-block;
+    font-size: 1.5em;
+    background-color: burlywood;
+    color: black;
+    border-right: 2px solid black;
+    justify-content: space-around;
+
+
+
+}
+nav li a{
+    color: black;
+
+}
+div p, div form{
+    text-align: center;
 }
 
-body{
+nav li a:hover{
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    color: burlywood;
+}
+
+
+h1, h2, h3, h4
+{
+    font-size: 1.7em;
+    text-align: center;
     padding: 10px;
 }
-/*groter scherm (alles groter dan mobiel)*/
-@media all and (min-width: 600px)
-{
-    /*flex zorgt ervoor dat in de breedte de navigatie balk komt te staan
-    space-around zorgt ervoor dat je ook langs de tekst kan drukken (het vormt een blokje)*/
-    nav ul
-    {
-        display: flex;
-        justify-content: space-around;    
-    }
-    
-    /*block vormt een blok element dat start op een nieuwe lijn en de hele breedte inneemt*/
-    nav ul li a
-    {
-        display: block;
-        padding: 20px 0;
-        
-    }
-    
-    /*Contouren h1, nav*/
-    header h1, header nav 
-    {
-	padding: 0 20px;
-    }
-    
-    /*geeft weer hoe hoog een lijn tekst is*/
-    h
-    {
-        line-height: 1.8;
-    }
-    
-    /*breedte, marge*/
-    main
-    {
-        padding: 15px 15px 50px 15px;
-        width: 80%;
-        margin: auto;
-    }
-    
+
+form{
+    padding: 10px;
+    alignment: center;
+    border: burlywood 1px;
 }
 
-/*klein scherm (mobiel)*/
-@media all and (max-width:500px)
-{
-    /*img is een inline element
-    zorgt ervoor dat de foto gecentreerd staat
-    */
-    main article img, main img
-    {
-        float:none;
-        padding: 10px 0;
-        display: block;
-        margin: auto;
-        width: auto;
-        max-width: 90%;
-    }
+p{
+    padding: 2px 10px;
+}
+tr{
+    text-align: center;
+}
+td{
+    text-align: center;
+    padding: 2px 10px;
+    border-bottom: 1px solid burlywood;
+
 }
 
-/*Maximale breedte van de main content*/
-@media all and (max-width:900px)
-{
-    main
-    {
-        max-width:700px;
-    }
-    
+thead tr td{
+    text-align: center;
+    font-size: 1.3em;
 }
 
-/*Maximale breedte van de main content*/
-@media all and (min-width: 1000px)
-{
-       
-main
-{   
-    max-width: 900px;  
+
+table{
+    position: center;
+    padding: 2px 10px;
+    text-align: center;
+    width:70%;
+    margin-left:15%;
+    margin-right:15%;
 }
-    th{
-        background-color: #484d72;
-        border: 2px solid white;
-        color: white;
-        width: 20%;
-        padding: 3px;
-        text-align: center;
-    }
-    td{
-        border-bottom: 1px solid black;
-        padding-bottom: 3px;
-        padding-top: 3px;
-        text-align: center;
-        position: center;
-    }
+a:hover{
+    text-underline: none;
 }

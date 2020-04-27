@@ -22,17 +22,13 @@ public class TaskR0676600Application {
 
 	@Bean
 	CommandLineRunner Runner(TaskRepository repository){
+		Subtask subtask = new Subtask("title", "Description");
 		return args -> {repository.save(new Task("Ip-minor taak",
 				"maken van een takenlijst",
 				LocalDateTime.of(2020, Month.MAY,25,22,30)));
 			repository.save(new Task("Mobiele toepassingen taak",
 					"maken van een finance app",
 					LocalDateTime.of(2022, Month.JUNE,1,23,30)));
-			/*Task t = repository.getTaskById(1);
-			Subtask s = new Subtask("/tasks","toon alle taken");
-			t.addSubtask(s);
-			repository.save(t);*/
-
 
 
 		};

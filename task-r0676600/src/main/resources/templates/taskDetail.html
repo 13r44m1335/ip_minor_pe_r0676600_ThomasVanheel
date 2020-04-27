@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Taskmanager - Task detail</title>
-    <p th:insert="nav"/>
+    <nav th:insert="nav"/>
 </head>
 <body>
 
@@ -17,7 +17,7 @@
     <p th:text="'Description: '+${task.description}"></p>
     <p th:text="'Due date: ' +${task.dueDateString}"></p>
 
-    <h2>SubTasks</h2>
+    <h2>Subtasks</h2>
     <div th:if="${subtasks.size()==0}">
         <p>No subtasks</p>
     </div>
@@ -27,21 +27,22 @@
             <tr>
                 <td>Title</td>
                 <td>Description</td>
-                <td></td>
-                <td></td>
+
             </tr>
             </thead>
             <tbody>
+
             <tr th:each="subtask : ${subtasks}">
                 <td th:text="${subtask.title}"></td>
                 <td th:text="${subtask.description}"></td>
-                <!--<td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'">edit</a></td>-->
+                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'">edit</a></td>
                 <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.getId()}+'/remove'">remove</a></td>
             </tr>
             </tbody>
         </table>
     </div>
 
+    <div>
     <form method="post" th:action="'/tasks/'+${task.id}+'/sub/create'">
         <h3>Add subtask</h3>
         <label for="title">Title: </label>
@@ -50,6 +51,8 @@
         <input type="text" name="description" id="description"><br>
         <input type="submit" value="Submit">
     </form>
+
+    </div>
 </div>
 </body>
 </html>

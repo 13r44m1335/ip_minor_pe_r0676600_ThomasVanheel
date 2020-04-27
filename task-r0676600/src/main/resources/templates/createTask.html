@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create task</title>
-    <p th:insert="nav"/>
+    <nav th:insert="nav"/>
 </head>
 <body>
 <h1>Create Task</h1>
@@ -16,7 +16,7 @@
     <input type="text" name="description" id="description">
     <br>
     <label for="dueDate">Due date: </label>
-    <input type="datetime-local" name="dueDate" id="dueDate" placeholder="2020-06-12T19:30">
+    <input type="datetime-local" name="dueDate" id="dueDate" placeholder="yyyy-mm-ddT08:30">
     <br>
     <input type="submit" value="Submit">
 </form>

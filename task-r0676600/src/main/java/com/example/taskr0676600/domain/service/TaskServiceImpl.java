@@ -117,15 +117,18 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public void editSubtask(int id, int subtaskid, SubtaskDTO subTask) {
+    public void editSubtask(int id, int subtaskid, SubtaskDTO subtask) {
         Task task = repository.getTaskById(id);
-        Subtask subTask1 = task.getSubtask(subtaskid);
-        subTask1.setTitle(subTask.getTitle());
-        subTask1.setDescription(subTask.getDescription());
-        task.editSubtask(subTask1);
+        List<Subtask> subtasks = task.getSubtasks();
+        for (Subtask s:subtasks
+             ) {
+            if(s.getId() == subtaskid){
+                s.setDescription(subtask.getDescription());
+                s.setTitle(subtask.getTitle());
+            }
+        }
+        task.setSubtasks(subtasks);
         repository.save(task);
-
-
 
     }
 

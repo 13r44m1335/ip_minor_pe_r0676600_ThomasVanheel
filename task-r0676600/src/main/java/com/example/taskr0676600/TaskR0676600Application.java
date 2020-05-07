@@ -22,7 +22,7 @@ public class TaskR0676600Application {
 
 	@Bean
 	CommandLineRunner Runner(TaskRepository repository){
-		Subtask subtask = new Subtask("title", "Description");
+		//Subtask subtask = new Subtask("title", "Description");
 		return args -> {repository.save(new Task("Ip-minor taak",
 				"maken van een takenlijst",
 				LocalDateTime.of(2020, Month.MAY,25,22,30)));
@@ -33,4 +33,6 @@ public class TaskR0676600Application {
 
 		};
 	}
+
+
 }

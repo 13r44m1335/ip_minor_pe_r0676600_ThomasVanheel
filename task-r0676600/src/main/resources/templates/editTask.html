@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Taskmanager - Edit task</title>
+    <title th:text="#{titleEditTask}"/>
     <nav th:insert="nav"/>
 </head>
 <body>
-<h1>Edit Task</h1>
+<h1 th:text="#{label.editTask}"/>
 <form method="post" th:action="'/tasks/edit/'+${task.id}">
 
-    <label for="title">Title: </label>
+    <label for="title" th:text="#{label.title}">:</label>
     <input type="text" name="title" id="title" th:value="${task.title}">
     <br>
-    <label for="description">Description: </label>
+    <label for="description" th:text="#{label.description}">: </label>
     <input type="text" name="description" id="description" th:value="${task.description}">
     <br>
-    <label for="dueDate">Due date: </label>
+    <label for="dueDate" th:text="#{label.duedate}">: </label>
     <input type="datetime-local" name="dueDate" id="dueDate" th:value="${task.dueDate}">
     <br>
-    <input type="submit" value="Edit">
+    <input type="submit" th:value="#{label.edit}">
 
 </form>
 </body>

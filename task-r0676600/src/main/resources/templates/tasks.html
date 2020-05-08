@@ -2,28 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Taskmanager - Overview tasks</title>
+    <title th:text="#{titleTasks}"/>
     <nav th:insert="nav"/>
 </head>
 <body>
-<h1>Tasks</h1>
+<h1 th:text="#{tasks}"/>
 <table>
 
     <tbody>
     <div th:if="${tasks.isEmpty()}">
         <tr>
-            <td>No tasks left to do</td>
+            <td th:text="#{error.noTasks}"/>
         </tr>
     </div>
 
     <tr th:each="task : ${tasks}">
 
-        <td th:text="${task.title} + ' due ' + ${task.dueDateString}"/>
-        <td><a th:href="'/tasks/'+${task.id}">Detail</a></td>
+        <td th:text="${task.title} + #{due} + ${task.dueDateString}"/>
+        <td ><a th:href="'/tasks/'+${task.id}" th:text="#{detail}"/></td>
 
-        <td><a th:href="'/tasks/edit/'+${task.id}">Edit task</a></td>
+        <td ><a th:href="'/tasks/edit/'+${task.id}" th:text="#{label.editTask}"/></td>
 
-        <td><a th:href="'/tasks/'+${task.id}+'/remove'">Remove task</a></td>
+        <td ><a th:href="'/tasks/'+${task.id}+'/remove'" th:text="#{removeTask}"/></td>
 
 
 

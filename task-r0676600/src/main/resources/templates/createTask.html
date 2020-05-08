@@ -2,23 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create task</title>
+    <title th:text="#{titleCreateTask}"/>
+
     <nav th:insert="nav"/>
 </head>
 <body>
-<h1>Create Task</h1>
+<h1 th:text="#{createTask}"/>
 <form method="post" action="/tasks/createTask">
-    <p>New Task</p>
-    <label for="title">Title: </label>
+    <p th:text="#{newTask}"/>
+    <label for="title" th:text="#{label.title}">: </label>
     <input type="text" name="title" id="title" >
     <br>
-    <label for="description">Description: </label>
+    <label for="description" th:text="#{label.description}">: </label>
     <input type="text" name="description" id="description">
     <br>
-    <label for="dueDate">Due date: </label>
+    <label for="dueDate" th:text="#{label.duedate}">: </label>
     <input type="datetime-local" name="dueDate" id="dueDate" placeholder="yyyy-mm-ddT08:30">
     <br>
-    <input type="submit" value="Submit">
+    <input type="submit" th:value="#{submit}">
 </form>
 </body>
 </html>

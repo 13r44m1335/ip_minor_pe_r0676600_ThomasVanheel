@@ -2,31 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Taskmanager - Task detail</title>
+    <title th:text="#{titleTaskDetail}"/>
     <nav th:insert="nav"/>
 </head>
 <body>
 
-<h1>Task detail</h1>
+<h1 th:text="#{taskDetail}"/>
 <div th:if="${task==null}">
-    <p>Task not found</p>
+    <p th:text="#{error.taskNotFound}"/>
 </div>
 <div th:if="${task!=null}">
 
-    <p th:text="'Title: ' +${task.title}"></p>
-    <p th:text="'Description: '+${task.description}"></p>
-    <p th:text="'Due date: ' +${task.dueDateString}"></p>
+    <p th:text="#{label.title}+': ' +${task.title}"></p>
+    <p th:text="#{label.description}+': '+${task.description}"></p>
+    <p th:text="#{label.duedate}+': ' +${task.dueDateString}"></p>
 
-    <h2>Subtasks</h2>
+    <h2 th:text="#{subtasks}"/>
     <div th:if="${subtasks.size()==0}">
-        <p>No subtasks</p>
+        <p th:text="#{error.noSubtasks}"/>
     </div>
     <div th:if="${subtasks.size()!=0}">
         <table>
             <thead>
             <tr>
-                <td>Title</td>
-                <td>Description</td>
+                <td th:text="#{label.title}"/>
+                <td th:text="#{label.description}"/>
 
             </tr>
             </thead>
@@ -35,8 +35,8 @@
             <tr th:each="subtask : ${subtasks}">
                 <td th:text="${subtask.title}"></td>
                 <td th:text="${subtask.description}"></td>
-                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'">edit</a></td>
-                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.getId()}+'/remove'">remove</a></td>
+                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'" th:text="#{label.edit}"/></td>
+                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.getId()}+'/remove'" th:text="#{remove}"/></td>
             </tr>
             </tbody>
         </table>
@@ -44,12 +44,12 @@
 
     <div>
     <form method="post" th:action="'/tasks/'+${task.id}+'/sub/create'">
-        <h3>Add subtask</h3>
-        <label for="title">Title: </label>
+        <h3 th:text="#{addSubtask}"/>
+        <label for="title" th:text="#{label.title}">: </label>
         <input type="text" name="title" id="title" ><br>
-        <label for="description">Description: </label>
+        <label for="description" th:text="#{label.description}">: </label>
         <input type="text" name="description" id="description"><br>
-        <input type="submit" value="Submit">
+        <input type="submit" th:value="#{submit}">
     </form>
 
     </div>

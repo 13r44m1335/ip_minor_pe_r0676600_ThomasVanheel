@@ -2,18 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit subtask</title>
+    <title th:text="#{titleEditSubtask}"/>
     <nav th:insert="nav"/>
 </head>
 <body>
-<h1>Edit subtask</h1>
+<h1 th:text="#{editSubtask}"/>
 <form method="post" th:action="'/tasks/'+${taskId}+'/sub/'+${subtaskid}+'/edit/'">
 
-    <label for="title">Title: </label>
+    <label for="title" th:text="#{label.title}">: </label>
     <input type="text" name="title" id="title" th:value="${title}"><br>
-    <label for="description">Description: </label>
+    <label for="description" th:text="#{label.description}">: </label>
     <input type="text" name="description" id="description" th:value="${description}"><br>
-    <input type="submit" value="Edit">
+    <input type="submit" th:value="#{label.edit}">
 </form>
 </body>
 </html>

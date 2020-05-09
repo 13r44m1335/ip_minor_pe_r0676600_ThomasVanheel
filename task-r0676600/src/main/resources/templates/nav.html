@@ -1,19 +1,20 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org">
 <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
 <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 
     <h1 th:text="#{navigation}"/>
-    <li ><a href="/tasks" th:text="#{tasks}">Tasks</a></li>
-    <li ><a href="/tasks/new" th:text="#{createTask}"></a></li>
+    <li><a href="/tasks" th:text="#{tasks}">Tasks</a></li>
+    <li><a href="/tasks/new" th:text="#{createTask}"></a></li>
     <li/>
     <li/>
     <li/>
-    <li><span th:text="#{lang.change}"></span>:
+    <li><span th:text="#{lang.change}"/>:
         <select id="locales">
-            <option></option>
+            <option/>
             <option value="en" th:text="#{lang.eng}"></option>
             <option value="nl" th:text="#{lang.nl}"></option>
-        </select> </li>
+        </select>
+    </li>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
 </script>
@@ -21,8 +22,12 @@
     $(document).ready(function() {
         $("#locales").change(function () {
             var selectedOption = $('#locales').val();
-            if (selectedOption != ''){
-                window.location.replace('/?lang=' + selectedOption);
+
+            if (selectedOption != '' && window.location.href.match('.*\?lang\=..')){
+                window.location.replace(window.location.href.substring(0,window.location.href.length-8) +'?lang=' + selectedOption);
+            }
+            else {
+                window.location.replace(window.location.href +'?lang=' + selectedOption);
             }
         });
     });

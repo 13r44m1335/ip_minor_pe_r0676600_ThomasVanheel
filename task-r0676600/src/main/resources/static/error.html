@@ -9,9 +9,7 @@
 <h1>Error Page</h1>
 <tr th:each="e : ${errors}">
 
-    <td th:text="${e.message} + ' due ' + ${task.dueDate}">1</td>
-    <td><a th:href="'/tasks/'+${task.id}">Detail</a></td>
-    <td><a th:href="'/tasks/edit/'+${task.id}">Edit task</a></td>
+
 
 </tr>
 

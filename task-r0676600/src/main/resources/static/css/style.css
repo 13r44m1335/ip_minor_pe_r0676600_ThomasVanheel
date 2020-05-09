@@ -3,12 +3,10 @@ p {
 
 }
 
-/*form*/
 label
 {
     line-height: 1.6;
 }
-/*invulvakken naam ev.*/
 input
 {
     min-width: 250px;
@@ -16,8 +14,6 @@ input
     margin: 10px 0;
 }
 
-
-/*Invulvak commentaar*/
 textarea
 {
     min-width: 250px;
@@ -25,35 +21,26 @@ textarea
     margin: 10px 0;
 }
 
-/*Hoveren (overgaan van muis)*/
 nav a:hover, nav a:focus
 {
     text-decoration:underline;
-    color: #ffffff;
-    font-weight: bold;
 }
-
-/*Tekstuitlijing aan de linkerkant (om grote gaten te voorkomen)*/
 li
 {
     text-align: left;
 }
 
-/*Lettertype*/
 html
 {
     font-family: "Gill Sans", verdana, sans-serif;
 }
 
-
-/*Kleur van de vakjes van de navigatie en de tekst kleur*/
 header nav a
 {
-    background-color: burlywood;
     color: #FFF;
+
 }
 
-/*Kleur van footer + contouren*/
 footer
 {
     background-color: burlywood;
@@ -63,8 +50,10 @@ footer
 
 
 nav{
-    background-color: burlywood;
+    <!--background-color: burlywood;-->
     border: 2px solid black;
+    background-image: url("../images/background.jpg");
+
 }
 nav h1{
     padding: 5px;
@@ -76,16 +65,18 @@ nav li{
     padding: 0px 5px;
     display: inline-block;
     font-size: 1.5em;
-    background-color: burlywood;
+<!--background-color: burlywood;-->
     color: black;
     border-right: 2px solid black;
     justify-content: space-around;
+    text-underline: none;
 
 
 
 }
 nav li a{
     color: black;
+    text-underline: none;
 
 }
 div p, div form{
@@ -95,8 +86,6 @@ div p, div form{
 nav li a:hover{
     display: flex;
     justify-content: space-around;
-    background-color: black;
-    color: burlywood;
 }
 
 
@@ -110,7 +99,7 @@ h1, h2, h3, h4
 form{
     padding: 10px;
     alignment: center;
-    border: burlywood 1px;
+    border: solid black 2px;
 }
 
 p{
@@ -122,7 +111,7 @@ tr{
 td{
     text-align: center;
     padding: 2px 10px;
-    border-bottom: 1px solid burlywood;
+    border-bottom: 2px solid black;
 
 }
 
@@ -142,4 +131,21 @@ table{
 }
 a:hover{
     text-underline: none;
+}
+
+body {
+    background-image: url("../images/background-paper.jpg");
+
+}
+
+nav form{
+    text-align: right;
+    position: center ;
+    top:40px;
+    right:50px;
+    font-size: 1.5em;
+    padding: 0px;
+    alignment: right;
+    border: none;
+
 }

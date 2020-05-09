@@ -3,18 +3,24 @@
 <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 
     <h1 th:text="#{navigation}"/>
+    <li><a href="/">Index</a></li>
     <li><a href="/tasks" th:text="#{tasks}">Tasks</a></li>
     <li><a href="/tasks/new" th:text="#{createTask}"></a></li>
-    <li/>
-    <li/>
-    <li/>
-    <li><span th:text="#{lang.change}"/>:
+    <div style="text-align: right; position: absolute; top:40px; right:20px; font-size: 1.5em;"><span th:text="#{lang.change}"/>:
         <select id="locales">
             <option/>
             <option value="en" th:text="#{lang.eng}"></option>
             <option value="nl" th:text="#{lang.nl}"></option>
         </select>
-    </li>
+
+    </div>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" th:value="#{signof}"/>
+</form>
+
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
 </script>

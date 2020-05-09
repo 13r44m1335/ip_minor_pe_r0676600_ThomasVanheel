@@ -18,7 +18,7 @@
 
     <tr th:each="task : ${tasks}">
 
-        <td th:text="${task.title} + #{due} + ${task.dueDateString}"/>
+        <td th:text="${task.title} +' '+ #{due} + ${task.dueDateString}"/>
         <td ><a th:href="'/tasks/'+${task.id}" th:text="#{detail}"/></td>
 
         <td ><a th:href="'/tasks/edit/'+${task.id}" th:text="#{label.editTask}"/></td>

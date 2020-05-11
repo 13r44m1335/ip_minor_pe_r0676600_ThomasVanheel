@@ -6,6 +6,9 @@
     <li><a href="/">Index</a></li>
     <li sec:authorize="isAuthenticated()"><a href="/tasks" th:text="#{tasks}">Tasks</a></li>
     <li sec:authorize="hasAuthority('ADMIN')"><a href="/tasks/new" th:text="#{createTask}"></a></li>
+
+
+
     <div style="text-align: right; position: absolute; top:40px; right:20px; font-size: 1.5em;"
          sec:authorize="permitAll()"><span th:text="#{lang.change}"/>:
         <select id="locales">

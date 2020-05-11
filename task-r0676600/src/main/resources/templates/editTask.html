@@ -19,7 +19,7 @@
     <label for="dueDate" th:text="#{label.duedate}">: </label>
     <input type="datetime-local" name="dueDate" id="dueDate" th:value="${task.dueDate}">
     <br>
-    <input type="submit" th:value="#{label.edit}">
+    <button class="button" type="submit"><span th:text="#{label.edit}"/></button>
 
 </form>
 </body>

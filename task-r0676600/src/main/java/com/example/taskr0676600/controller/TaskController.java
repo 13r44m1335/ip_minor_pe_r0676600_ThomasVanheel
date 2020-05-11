@@ -53,7 +53,7 @@ public class TaskController {
             taskService.addTask(taskDTO);
             return "redirect:/tasks";
         } else {
-            return "/tasks/new";
+            return "redirect:/tasks/new";
         }
     }
 

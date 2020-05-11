@@ -1,4 +1,4 @@
-package com.example.taskr0676600.controller;
+package com.example.taskr0676600.configuration;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

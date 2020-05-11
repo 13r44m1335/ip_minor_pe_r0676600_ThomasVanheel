@@ -1,8 +1,6 @@
 package com.example.taskr0676600.dto;
 
 
-import com.example.taskr0676600.domain.model.UserRole;
-
 import javax.validation.constraints.NotEmpty;
 
 public class CreateUserDTO {
@@ -10,6 +8,16 @@ public class CreateUserDTO {
     private String username;
     @NotEmpty
     private String password;
+
+    private String userRole;
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
 
     public String getUsername() {
         return username;

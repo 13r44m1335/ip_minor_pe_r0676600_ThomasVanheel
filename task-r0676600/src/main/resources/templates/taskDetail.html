@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{titleTaskDetail}"/>
@@ -35,21 +35,31 @@
             <tr th:each="subtask : ${subtasks}">
                 <td th:text="${subtask.title}"></td>
                 <td th:text="${subtask.description}"></td>
-                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'" th:text="#{label.edit}"/></td>
-                <td><a th:href="'/tasks/'+${task.id}+'/sub/'+${subtask.getId()}+'/remove'" th:text="#{remove}"/></td>
+                <td sec:authorize="hasAuthority('ADMIN')">
+                    <form th:action="'/tasks/'+${task.id}+'/sub/'+${subtask.id}+'/edit'" style="border: none;">
+
+                        <button class="button" type="submit"><span th:text="#{label.edit}"/></button>
+                    </form>
+                </td>
+                <td sec:authorize="hasAuthority('ADMIN')">
+                    <form th:action="'/tasks/'+${task.id}+'/sub/'+${subtask.getId()}+'/remove'" style="border: none;">
+
+                        <button class="button" type="submit"><span th:text="#{remove}"/></button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <div>
+    <div sec:authorize="hasAuthority('ADMIN')">
     <form method="post" th:action="'/tasks/'+${task.id}+'/sub/create'">
         <h3 th:text="#{addSubtask}"/>
         <label for="title" th:text="#{label.title}">: </label>
         <input type="text" name="title" id="title" ><br>
         <label for="description" th:text="#{label.description}">: </label>
         <input type="text" name="description" id="description"><br>
-        <input type="submit" th:value="#{submit}">
+        <button class="button" type="submit"><span th:text="#{submit}"/></button>
     </form>
 
     </div>

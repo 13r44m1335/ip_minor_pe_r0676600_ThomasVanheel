@@ -2,6 +2,7 @@ package com.example.taskr0676600.domain.service;
 
 import com.example.taskr0676600.domain.model.User;
 import com.example.taskr0676600.domain.model.UserRole;
+//import com.example.taskr0676600.dto.CreateUserDTO;
 import com.example.taskr0676600.dto.CreateUserDTO;
 import com.example.taskr0676600.dto.UserDTO;
 import com.example.taskr0676600.repository.UserRepository;
@@ -37,9 +38,13 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setUsername(userDTO.getUsername());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        user.setRole(userDTO.getUsername().endsWith("a") ? UserRole.ADMIN : UserRole.USER);
+        System.out.println(userDTO.getUserRole());
+        if(userDTO.getUserRole().equals("ADMIN")) user.setRole(UserRole.ADMIN);
+        else user.setRole(UserRole.USER);
         user = repository.save(user);
+        System.out.println("user created");
         return convert(user);
+
     }
 
     private UserDTO convert(User user) {
@@ -49,7 +54,4 @@ public class UserServiceImpl implements UserService {
         dto.setRole(user.getRole());
         return dto;
     }
-
-
 }
-

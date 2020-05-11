@@ -6,19 +6,29 @@
     <title th:text="#{signup}"/>
     <nav th:insert="nav"/>
 </head>
+
 <body>
-<h1 th:text="#{signup}"></h1>
-<form method="post" action="/signup">
+<h1>Sign up</h1>
+<form th:method="post" th:action="@{/signup}" th:object="${user}">
     <p th:if="${!#fields.globalErrors().isEmpty()}" th:text="${#fields.globalErrors()}"></p>
     <div>
-        <label for="username" th:text="#{label.username}">:</label>
-        <input type="text" id="username" name="username">
+        <label for="username">Username:</label>
+        <input type="text" th:field="*{username}">
+        <p th:errors="*{username}"></p>
     </div>
     <div>
-        <label for="password" th:text="#{label.password}">:</label>
-        <input type="password" id="password" name="password">
+        <label for="password">Password:</label>
+        <input type="password" th:field="*{password}">
     </div>
-    <input type="submit" th:value="#{signup}">
+    <div>
+        <input type="radio" id="admin" for="userRole" name="userRole" value="ADMIN">
+        <label id="o1">ADMIN</label><br>
+        <input type="radio" id="user" for="userRole" name="userRole" value="USER">
+        <label id="o2" th:text="#{label.user}">USER</label><br>
+
+    </div>
+    <input type="submit" value="Sign up">
 </form>
 </body>
 </html>
+

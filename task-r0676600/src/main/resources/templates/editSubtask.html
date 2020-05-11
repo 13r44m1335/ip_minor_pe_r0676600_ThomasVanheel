@@ -13,7 +13,8 @@
     <input type="text" name="title" id="title" th:value="${title}"><br>
     <label for="description" th:text="#{label.description}">: </label>
     <input type="text" name="description" id="description" th:value="${description}"><br>
-    <input type="submit" th:value="#{label.edit}">
+    <button class="button" type="submit"><span th:text="#{label.edit}"/></button>
+
 </form>
 </body>
 </html>

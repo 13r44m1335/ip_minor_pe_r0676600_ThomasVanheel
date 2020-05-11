@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="#{label.lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{titleTasks}"/>
@@ -16,14 +16,32 @@
         </tr>
     </div>
 
+
     <tr th:each="task : ${tasks}">
 
         <td th:text="${task.title} +' '+ #{due} + ${task.dueDateString}"/>
-        <td ><a th:href="'/tasks/'+${task.id}" th:text="#{detail}"/></td>
+        <td>
+            <form th:action="'/tasks/'+${task.id}" style="border: none;">
 
-        <td ><a th:href="'/tasks/edit/'+${task.id}" th:text="#{label.editTask}"/></td>
+            <button class="button" type="submit"><span th:text="#{detail}"/></button>
+        </form>
+        </td>
 
-        <td ><a th:href="'/tasks/'+${task.id}+'/remove'" th:text="#{removeTask}"/></td>
+        <td sec:authorize="hasAuthority('ADMIN')">
+            <form th:action="'/tasks/edit/'+${task.id}" style="border: none;">
+
+            <button class="button" type="submit"><span th:text="#{label.editTask}"/></button>
+            </form>
+
+        </td>
+
+        <td sec:authorize="hasAuthority('ADMIN')">
+            <form th:action="'/tasks/'+${task.id}+'/remove'" style="border: none;">
+
+                <button class="button" type="submit"><span th:text="#{removeTask}"/></button>
+            </form>
+
+        </td>
 
 
 

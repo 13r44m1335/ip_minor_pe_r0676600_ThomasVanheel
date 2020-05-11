@@ -1,12 +1,15 @@
 package com.example.taskr0676600.controller;
 
+import com.example.taskr0676600.domain.model.UserRole;
 import com.example.taskr0676600.domain.service.UserService;
 import com.example.taskr0676600.dto.CreateUserDTO;
+import com.example.taskr0676600.dto.UserDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -19,12 +22,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "signinform";
-    }
-
-
     @GetMapping("/signup")
     public String getCreateUser(Model model) {
         model.addAttribute("user", new CreateUserDTO());
@@ -33,6 +30,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public String postCreateUser(@ModelAttribute("user") @Valid CreateUserDTO user, BindingResult bindingResult) {
+        System.out.println("tot postmap");
         if (bindingResult.hasErrors()) {
             return "signupform";
         }
@@ -40,9 +38,8 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/logout")
-    public String logout(){
-        return "redirect:/login";
+    @GetMapping("/login")
+    public String getLoginForm() {
+        return "signinform";
     }
-
 }

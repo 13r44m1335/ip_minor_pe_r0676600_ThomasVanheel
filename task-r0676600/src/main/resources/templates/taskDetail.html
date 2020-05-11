@@ -53,6 +53,9 @@
     </div>
 
     <div sec:authorize="hasAuthority('ADMIN')">
+        <div th:if="${errors!= null}">
+            <p th:text=" ${errors}"/>
+        </div>
     <form method="post" th:action="'/tasks/'+${task.id}+'/sub/create'">
         <h3 th:text="#{addSubtask}"/>
         <label for="title" th:text="#{label.title}">: </label>

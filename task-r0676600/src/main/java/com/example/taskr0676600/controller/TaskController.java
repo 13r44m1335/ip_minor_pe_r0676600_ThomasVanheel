@@ -35,9 +35,13 @@ public class TaskController {
 
     @GetMapping("/tasks/{id}")
     public String getTask(Model model, @PathVariable("id") Integer id) {
-        model.addAttribute("task", taskService.getTaskById(id));
-        model.addAttribute("subtasks",taskService.getTaskById(id).getSubtasks());
-        return "taskDetail";
+        if(taskService.getTaskById(id) == null){
+            return "taskDetail";
+        }else {
+            model.addAttribute("task", taskService.getTaskById(id));
+            model.addAttribute("subtasks", taskService.getTaskById(id).getSubtasks());
+            return "taskDetail";
+        }
     }
 
 
@@ -48,12 +52,14 @@ public class TaskController {
     }
 
     @PostMapping("/tasks/createTask")
-    public String newTask(@Valid TaskDTO taskDTO, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
+    public String newTask(@Valid TaskDTO taskDTO, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            String error = "error";
+            model.addAttribute("errors",error);
+            return "createTask";
+        } else {
             taskService.addTask(taskDTO);
             return "redirect:/tasks";
-        } else {
-            return "redirect:/tasks/new";
         }
     }
 

@@ -5,8 +5,9 @@ import javax.validation.constraints.NotNull;
 public class SubtaskDTO {
 
     private int subtaskid;
-
+    @NotNull
     private String title;
+    @NotNull
     private String description;
 
 

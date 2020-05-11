@@ -30,7 +30,6 @@ public class UserController {
 
     @PostMapping("/signup")
     public String postCreateUser(@ModelAttribute("user") @Valid CreateUserDTO user, BindingResult bindingResult) {
-        System.out.println("tot postmap");
         if (bindingResult.hasErrors()) {
             return "signupform";
         }
